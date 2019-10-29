@@ -105,8 +105,9 @@ namespace Books.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    // Maybe consider doing something different
                     if (!AuthorExists(author.AuthorId))
-                    {
+                    {                        
                         return NotFound();
                     }
                     else
@@ -132,7 +133,7 @@ namespace Books.Controllers
             }
 
             var author = await _context.Author
-                .FirstOrDefaultAsync(m => m.AuthorId == id);
+                .SingleOrDefaultAsync(m => m.AuthorId == id);
             if (author == null)
             {
                 return NotFound();
@@ -147,9 +148,19 @@ namespace Books.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var author = await _context.Author.FindAsync(id);
+
+            if (author == null)
+            {
+                return NotFound();
+            }
+
             _context.Author.Remove(author);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            ViewBag.Title = "Author deleted successfully";
+            ViewBag.Message = "The author was deleted successfully.";
+
+            return View("Success");
         }
 
         private bool AuthorExists(int id)

@@ -114,7 +114,11 @@ namespace Books.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                ViewBag.Title = "Author updated successfully";
+                ViewBag.Message = "The author was updated successfully.";
+
+                return View("Success");
             }
             return View(author);
         }

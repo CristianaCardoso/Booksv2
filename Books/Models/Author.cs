@@ -11,6 +11,7 @@ namespace Books.Models
         public int AuthorId { get; set; }
 
         [Required]
+        [Display(Name ="Author name")]
         public string Name { get; set; }
     }
 }

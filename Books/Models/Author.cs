@@ -12,6 +12,9 @@ namespace Books.Models
 
         [Required]
         [Display(Name ="Author name")]
+        [StringLength(128)]
         public string Name { get; set; }
+
+        public ICollection<Book> Books { get; set; }
     }
 }

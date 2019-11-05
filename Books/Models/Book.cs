@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Books.Models {
     public class Book {
@@ -10,5 +11,7 @@ namespace Books.Models {
 
         public int AuthorId { get; set; }
         public Author Author { get; set; }
+
+        public ICollection<Category> Categories { get; set; }
     }
 }

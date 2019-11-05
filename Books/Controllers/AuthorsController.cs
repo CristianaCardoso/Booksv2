@@ -154,8 +154,13 @@ namespace Books.Controllers
                 return NotFound();
             }
 
-            _context.Author.Remove(author);
-            await _context.SaveChangesAsync();
+            try {
+                _context.Author.Remove(author);
+                await _context.SaveChangesAsync();
+            } catch {
+                // Inform the user that we could not delete the author (maybe it has books)
+                return View("ErrorDeleting");
+            }
 
             ViewBag.Title = "Author deleted successfully";
             ViewBag.Message = "The author was deleted successfully.";

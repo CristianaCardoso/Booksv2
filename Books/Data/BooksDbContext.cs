@@ -45,7 +45,7 @@ namespace Books.Models
             modelBuilder.Entity<BookCategory>()
                 .HasOne(bc => bc.Category)
                 .WithMany(c => c.BooksCategory)
-                .HasForeignKey(bc => bc.Category)
+                .HasForeignKey(bc => bc.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

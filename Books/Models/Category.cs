@@ -12,6 +12,6 @@ namespace Books.Models {
         [StringLength(128)]
         public string Name { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+        public ICollection<BookCategory> BooksCategory { get; set; }
     }
 }

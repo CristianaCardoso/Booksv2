@@ -12,6 +12,6 @@ namespace Books.Models {
         public int AuthorId { get; set; }
         public Author Author { get; set; }
 
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<BookCategory> CategoriesBook { get; set; }
     }
 }

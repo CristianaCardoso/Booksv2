@@ -17,5 +17,14 @@ namespace Books.Models
         public DbSet<Books.Models.Author> Author { get; set; }
 
         public DbSet<Books.Models.Book> Book { get; set; }
+
+        public DbSet<Books.Models.Category> Category { get; set; }
+
+        public DbSet<Books.Models.BookCategory> BookCategory { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<BookCategory>()
+                .HasKey(bc => new { bc.BookId, bc.CategoryId });
+        }
     }
 }
